@@ -23,13 +23,19 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
+
+
+    
+    <UserControl.DataContext>
+        <local:ListerFiliers/>
+    </UserControl.DataContext>   
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="121*"/>
             <RowDefinition Height="109*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <telerik:RadCarousel x:Name="radfil" HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="radfil_Loaded" />
+            <telerik:RadCarousel x:Name="radfil" HorizontalAlignment="Left" VerticalAlignment="Top" ItemsSource="{Binding ListeFilieres, UpdateSourceTrigger=PropertyChanged}" telerik:AnimationManager.IsAnimationEnabled="True"  />
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -39,11 +45,11 @@
             <Grid Grid.Column="1" >
                 <StackPanel x:Name="stackPanel" HorizontalAlignment="Left" Height="200" Margin="26,4,0,0" VerticalAlignment="Top" Width="294" Orientation="Vertical" Background="#FFE6E6E6">
                     <TextBlock HorizontalAlignment="Left" Margin="10 10 0 0" TextWrapping="Wrap" Text="ID Filiere" VerticalAlignment="Top" Foreground="#FF22576A"/>
-                    <TextBox x:Name="TextIDFiliere" Text="{Binding ElementName=radfil, Path=SelectedItem.Id_filiere, Mode=OneWay}" Height="23"  Grid.Row="1" Margin="10 0 10 10" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FF22576A"/>
+                    <TextBox IsReadOnly="True" x:Name="TextIDFiliere" Text="{Binding ElementName=radfil, Path=SelectedItem.Id, Mode=OneWay}" Height="23"  Grid.Row="1" Margin="10 0 10 10" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FF22576A"/>
                     <TextBlock HorizontalAlignment="Left" Margin="10 10 0 0" TextWrapping="Wrap" Text="Nom Filiere" VerticalAlignment="Top" Foreground="#FF22576A"/>
-                    <TextBox x:Name="TextNomFiliere" HorizontalAlignment="Left" Text="{Binding ElementName=radfil, Path=SelectedItem.Nom_filiere, Mode=OneWay}" Height="23" Margin="10 0 0 0" TextWrapping="Wrap"   VerticalAlignment="Top" Foreground="#FF22576A" Width="274"/>
+                    <TextBox x:Name="TextNomFiliere" HorizontalAlignment="Left" Text="{Binding ElementName=radfil, Path=SelectedItem.NomFiliere, Mode=OneWay}" Height="23" Margin="10 0 0 0" TextWrapping="Wrap"   VerticalAlignment="Top" Foreground="#FF22576A" Width="274"/>
                     <TextBlock HorizontalAlignment="Left" Margin="10 10 0 0" TextWrapping="Wrap" Text="Responsable" VerticalAlignment="Top" Foreground="#FF22576A"/>
-                    <TextBox x:Name="TextResponsableFiliere" Text="{Binding ElementName=radfil, Path=SelectedItem.responsable, Mode=OneWay}" Height="23"  Grid.Row="1" Margin="10 0 10 10" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FF22576A"/>
+                    <TextBox x:Name="TextResponsableFiliere" Text="{Binding ElementName=radfil, Path=SelectedItem.Responsable, Mode=OneWay}" Height="23"  Grid.Row="1" Margin="10 0 10 10" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FF22576A"/>
                     <TextBlock x:Name="MsgErrorFiliere" HorizontalAlignment="Left" Margin="10 10 0 0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Foreground="Red"/>
                 </StackPanel>
             </Grid>

@@ -37,12 +37,12 @@
                 </chart:SfChart3D.Header>
 
                 <chart:SfChart3D.PrimaryAxis >
-                    <chart:CategoryAxis3D LabelExtent="50" LabelsIntersectAction="Auto" Foreground="Black"  Header="Filieres"  FontSize="20" 
+                    <chart:CategoryAxis3D LabelsIntersectAction="Auto" Foreground="Black"  Header="Filieres"  FontSize="20" 
                                      LabelTemplate="{StaticResource labelTemplate}"
                                      AxisLineStyle="{StaticResource AxisStyle1}" 
-                                     MajorTickLineStyle="{StaticResource AxisStyle}">
-                        
-                    </chart:CategoryAxis3D>
+                                     MajorTickLineStyle="{StaticResource AxisStyle}"/>
+
+
 
                 </chart:SfChart3D.PrimaryAxis>
                 <chart:SfChart3D.SecondaryAxis>
@@ -52,7 +52,7 @@
                                      MajorTickLineStyle="{StaticResource AxisStyle}"/>
 
                 </chart:SfChart3D.SecondaryAxis>
-                <chart:ColumnSeries3D ShowTooltip="True" EnableAnimation="True" AnimationDuration="00:00:05"  IsSortData="True" SortBy="Y" SortDirection="Descending" BorderBrush="White" Palette="Metro" SegmentSelectionBrush="#FFCD5656" ItemsSource="{Binding UsersList}" XBindingPath="NomFiliere" YBindingPath="NombreEtudiant"/>
+                <chart:ColumnSeries3D ShowTooltip="True" EnableAnimation="True" AnimationDuration="00:00:05"  IsSortData="True" SortBy="Y" SortDirection="Descending" Palette="Metro" ItemsSource="{Binding UsersList}" XBindingPath="NomFiliere" YBindingPath="NombreEtudiant"/>
             </chart:SfChart3D>
 
         </Grid>
