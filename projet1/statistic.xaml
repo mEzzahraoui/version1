@@ -1,0 +1,20 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:projet1"
+             xmlns:chart="http://schemas.syncfusion.com/wpf" x:Class="projet1.statistic"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800" Background="White">
+    <Grid>
+        <Button x:Name="Column" Content="Column" HorizontalAlignment="Left" Margin="196,24,0,0" VerticalAlignment="Top" Width="115" Click="Column_Click"/>
+        <Button x:Name="Rotation" Content="Rotation" HorizontalAlignment="Left" Margin="48,24,0,0" VerticalAlignment="Top" Width="115" Click="Rotation_Click"/>
+        <Grid x:Name="StatisticGrid" Margin="28,79,10,34" Height="400">
+            <local:StatisticRotation HorizontalAlignment="Left" Height="400" Margin="0" VerticalAlignment="Top" />
+        </Grid>
+    </Grid>
+
+
+
+</UserControl>

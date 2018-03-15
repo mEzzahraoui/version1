@@ -1,0 +1,153 @@
+﻿<Window x:Class="projet1.WindowPrincipale"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:projet1"
+        mc:Ignorable="d"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="WindowPrincipale" Height="600" Width="1024" WindowStartupLocation="CenterScreen" WindowStyle="None">
+
+    <Window.Resources>
+        <Storyboard x:Key="OpenMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="MainGrid">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="190"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="MainGrid">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="30"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="188"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="4"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="CloseMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="MainGrid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="190"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="MainGrid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="34"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="188"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="-6"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-2"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu">
+            <BeginStoryboard x:Name="CloseMenu_BeginStoryboard" Storyboard="{StaticResource CloseMenu}"/>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Grid Background="#FF22576A">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="39*"/>
+            <ColumnDefinition Width="977*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="42*"/>
+            <RowDefinition Height="467*"/>
+            <RowDefinition Height="83*"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="GridMenu" Background="#FF22576A" Width="200" HorizontalAlignment="Left" Margin="-200,0,0,0" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="26*"/>
+                <RowDefinition Height="185*"/>
+                <RowDefinition Height="388*"/>
+            </Grid.RowDefinitions>
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+            <Grid Grid.Row="0">
+                <TextBlock Text="EnsasWare" Margin="20 0 0 0" Foreground="White" FontSize="16"/>
+            </Grid>
+            <Grid Grid.Row="1" Margin="0,0,0,0">
+                <Image Height="100" Width="200" VerticalAlignment="Top" Source="Ressource/ensas-pano.jpg" Stretch="Fill"/>
+                <Ellipse Stroke="White"  Height="60" Width="60"  Margin="15,75,125,26">
+                    <Ellipse.Fill>
+                        <ImageBrush  ImageSource="Ressource/ensasafi.jpeg" Stretch="UniformToFill" />
+                    </Ellipse.Fill>
+                </Ellipse>
+            </Grid>
+            <Grid Grid.Row="2">
+                <StackPanel>
+                    <ListView>
+                        <ListViewItem>
+                            <Button x:Name="FieldManagmentButton" Content="Gestion des Filieres" Width="180" Margin="0 10 0 0 " Background="#FF31B3E4" Click="FieldManagmentButton_Click"/>
+                        </ListViewItem>
+                        <ListViewItem>
+                            <Button x:Name="StudentManagmentButton" Content="Gestion des Etudiants" Width="180" Margin="0 0 0 0" Background="#FF31B3E4" Click="StudentManagmentButton_Click"/>
+                        </ListViewItem>
+                        <ListViewItem>
+                            <Button x:Name="StatisticButton" Content="Statistique" Width="180" Margin="0 0 0 10 " Background="#FF31B3E4" Click="StatisticButton_Click"/>
+                        </ListViewItem>
+                    </ListView>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="MainGrid" Background="White" Height="600" Width="1024" RenderTransformOrigin="0.5,0.5" Margin="0,0,-8,-8" Grid.RowSpan="3" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="56*"/>
+                <RowDefinition Height="483*"/>
+                <RowDefinition Height="61*"/>
+            </Grid.RowDefinitions>
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="53*"/>
+                <ColumnDefinition Width="771*"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="2" Background="White" Grid.RowSpan="3">
+                <Button x:Name="ButtonClose2" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" VerticalAlignment="top" HorizontalAlignment="Right" Width="25" Height="30" Padding="0" Margin="0,0,15,0" Background="{x:Null}" BorderBrush="{x:Null}" Click="ButtonClose_Click" RenderTransformOrigin="-0.444,0.844" Foreground="#FF22576A">
+                    <materialDesign:PackIcon Kind="Power" Width="25" Height="25"/>
+                </Button>
+            </Grid>
+            <Grid Grid.Column="0" Grid.Row="0">
+                <Button x:Name="ButtonCloseMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,5,0,0" Click="ButtonCloseMenu_Click" Visibility="Collapsed" Grid.Column="1">
+                    <materialDesign:PackIcon Kind="Menu" Foreground="#FF22576A"/>
+                </Button>
+                <Button x:Name="ButtonOpenMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="40" Height="40" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,6,0,0" Click="ButtonOpenMenu_Click">
+                    <materialDesign:PackIcon Kind="Menu" Foreground="#FF22576A" Width="30" Height="30" />
+                </Button>
+            </Grid>
+            <Grid x:Name="Principale"  Grid.Column="1" Grid.Row="1" Background="#FF22576A" Height="500">
+                <!--Ajouter les Grid Ici-->
+            </Grid>
+        </Grid>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1">
+            <Button x:Name="ButtonClose" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="0,2,8,0" Visibility="Collapsed"  Width="25" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Click="ButtonClose_Click" RenderTransformOrigin="-0.444,0.844" Foreground="White">
+                <materialDesign:PackIcon Kind="Power" Width="25" Height="25"/>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>
