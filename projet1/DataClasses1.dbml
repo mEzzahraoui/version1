@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="projet" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=PAVILION\SQLEXPRESS;Initial Catalog=projet;Integrated Security=True" SettingsObjectName="projet1.Properties.Settings" SettingsPropertyName="projetConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-FFB7557;Initial Catalog=projet;Integrated Security=True" SettingsObjectName="projet1.Properties.Settings" SettingsPropertyName="projetConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.etudiant" Member="etudiant">
     <Type Name="etudiant">
       <Column Name="cne" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />

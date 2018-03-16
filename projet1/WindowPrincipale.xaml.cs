@@ -67,7 +67,15 @@ namespace projet1
 
         private void StudentManagmentButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Principale.Children.Clear();
+            Etudiants usercontrol = new Etudiants();
+            Principale.Children.Add(usercontrol);
+            Storyboard s = (Storyboard)TryFindResource("CloseMenu");
+            s.Begin();
+            ButtonClose.Visibility = Visibility.Collapsed;
+            ButtonClose2.Visibility = Visibility.Visible;
+            ButtonOpenMenu.Visibility = Visibility.Visible;
+            ButtonCloseMenu.Visibility = Visibility.Collapsed;
         }
 
         private void StatisticButton_Click(object sender, RoutedEventArgs e)

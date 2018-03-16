@@ -12,13 +12,15 @@ namespace projet1
     {
        // public static ObservableCollection<etudiant> MyItems { get; set; }
         public static ObservableCollection<OperationFiliere> ListeFilieres { get; set; }
+        public static ObservableCollection<etudiant> MyItems { get; set; }
+        public static ObservableCollection<etudiant> lister { get; set; }
 
         public static DataClasses1DataContext cl;
 
         public ListerFiliers()
         {
             cl = new DataClasses1DataContext();
-           // MyItems = new ObservableCollection<etudiant>(cl.etudiant.ToList());
+            MyItems = new ObservableCollection<etudiant>(cl.etudiant.ToList());
             ListeFilieres = new ObservableCollection<OperationFiliere>(getAllFiliere());
         }
 
