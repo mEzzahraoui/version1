@@ -12,13 +12,15 @@ namespace projet1
     {
        // public static ObservableCollection<etudiant> MyItems { get; set; }
         public static ObservableCollection<OperationFiliere> ListeFilieres { get; set; }
+        public static ObservableCollection<etudiant> MyItems { get; set; }
+        public static ObservableCollection<etudiant> lister { get; set; }
 
         public static DataClasses1DataContext cl;
 
         public ListerFiliers()
         {
             cl = new DataClasses1DataContext();
-           // MyItems = new ObservableCollection<etudiant>(cl.etudiant.ToList());
+            MyItems = new ObservableCollection<etudiant>(cl.etudiant.ToList());
             ListeFilieres = new ObservableCollection<OperationFiliere>(getAllFiliere());
         }
 
@@ -75,12 +77,12 @@ namespace projet1
             }
         }
 
-        public String ModifierFiliere(Filiere f, String nomFil, String resp)
+        public String ModifierFiliere(OperationFiliere f, String nomFil, String resp)
         {
             try
             {
 
-                int id_fil = f.Id_filiere;
+                int id_fil = f.Id;
                 var x = (from fil in cl.Filiere
                          where fil.Id_filiere == id_fil
                          select fil).SingleOrDefault();
@@ -88,6 +90,13 @@ namespace projet1
                 var y = (from fil in cl.Filiere
                          where fil.Nom_filiere == nomFil
                          select new { nom = fil.Nom_filiere, id = fil.Id_filiere }).SingleOrDefault();
+
+                var item = ListeFilieres.FirstOrDefault(i => i.Id == id_fil);
+                if (item != null)
+                {
+                    item.NomFiliere = nomFil;
+                    item.Responsable = resp;
+                }
                 // si dans la base de donnée Nom filiere n'est pas définie unique
                 if (y != null && y.id!=id_fil )
                 {
@@ -110,21 +119,18 @@ namespace projet1
 
         }
 
-        public String SupprimerFiliere(Filiere f)
+        public String SupprimerFiliere(OperationFiliere f)
         {
             try
             {
-                OperationFiliere fil = new OperationFiliere();
-                fil.Id = f.Id_filiere;
-                fil.NomFiliere = f.Nom_filiere;
-                fil.Responsable = f.responsable;
-                ListeFilieres.Remove(fil);
+                
+                ListeFilieres.Remove(f);
                 var x = (from filier in cl.Filiere
-                         where filier.Id_filiere == f.Id_filiere
+                         where filier.Id_filiere == f.Id
                          select filier).SingleOrDefault();
                 cl.Filiere.DeleteOnSubmit(x);
                 cl.SubmitChanges();
-                return "La filiere " + f.Nom_filiere + " est supprimée de la base de donnée";
+                return "La filiere " + f.NomFiliere + " est supprimée de la base de donnée";
             }
             catch
             {

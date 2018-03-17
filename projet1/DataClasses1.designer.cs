@@ -30,12 +30,12 @@ namespace projet1
 		
     #region Définitions de méthodes d'extensibilité
     partial void OnCreated();
-    partial void Insertetudiant(etudiant instance);
-    partial void Updateetudiant(etudiant instance);
-    partial void Deleteetudiant(etudiant instance);
     partial void InsertFiliere(Filiere instance);
     partial void UpdateFiliere(Filiere instance);
     partial void DeleteFiliere(Filiere instance);
+    partial void Insertetudiant(etudiant instance);
+    partial void Updateetudiant(etudiant instance);
+    partial void Deleteetudiant(etudiant instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -68,6 +68,14 @@ namespace projet1
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<Filiere> Filiere
+		{
+			get
+			{
+				return this.GetTable<Filiere>();
+			}
+		}
+		
 		public System.Data.Linq.Table<etudiant> etudiant
 		{
 			get
@@ -75,13 +83,167 @@ namespace projet1
 				return this.GetTable<etudiant>();
 			}
 		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Filiere")]
+	public partial class Filiere : INotifyPropertyChanging, INotifyPropertyChanged
+	{
 		
-		public System.Data.Linq.Table<Filiere> Filiere
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id_filiere;
+		
+		private string _Nom_filiere;
+		
+		private string _responsable;
+		
+		private System.Nullable<System.DateTime> _date_creation;
+		
+		private EntitySet<etudiant> _etudiant;
+		
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnId_filiereChanging(int value);
+    partial void OnId_filiereChanged();
+    partial void OnNom_filiereChanging(string value);
+    partial void OnNom_filiereChanged();
+    partial void OnresponsableChanging(string value);
+    partial void OnresponsableChanged();
+    partial void Ondate_creationChanging(System.Nullable<System.DateTime> value);
+    partial void Ondate_creationChanged();
+    #endregion
+		
+		public Filiere()
+		{
+			this._etudiant = new EntitySet<etudiant>(new Action<etudiant>(this.attach_etudiant), new Action<etudiant>(this.detach_etudiant));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id_filiere", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id_filiere
 		{
 			get
 			{
-				return this.GetTable<Filiere>();
+				return this._Id_filiere;
 			}
+			set
+			{
+				if ((this._Id_filiere != value))
+				{
+					this.OnId_filiereChanging(value);
+					this.SendPropertyChanging();
+					this._Id_filiere = value;
+					this.SendPropertyChanged("Id_filiere");
+					this.OnId_filiereChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nom_filiere", DbType="VarChar(100)")]
+		public string Nom_filiere
+		{
+			get
+			{
+				return this._Nom_filiere;
+			}
+			set
+			{
+				if ((this._Nom_filiere != value))
+				{
+					this.OnNom_filiereChanging(value);
+					this.SendPropertyChanging();
+					this._Nom_filiere = value;
+					this.SendPropertyChanged("Nom_filiere");
+					this.OnNom_filiereChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_responsable", DbType="VarChar(255)")]
+		public string responsable
+		{
+			get
+			{
+				return this._responsable;
+			}
+			set
+			{
+				if ((this._responsable != value))
+				{
+					this.OnresponsableChanging(value);
+					this.SendPropertyChanging();
+					this._responsable = value;
+					this.SendPropertyChanged("responsable");
+					this.OnresponsableChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_date_creation", DbType="Date")]
+		public System.Nullable<System.DateTime> date_creation
+		{
+			get
+			{
+				return this._date_creation;
+			}
+			set
+			{
+				if ((this._date_creation != value))
+				{
+					this.Ondate_creationChanging(value);
+					this.SendPropertyChanging();
+					this._date_creation = value;
+					this.SendPropertyChanged("date_creation");
+					this.Ondate_creationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Filiere_etudiant", Storage="_etudiant", ThisKey="Id_filiere", OtherKey="id_fil")]
+		public EntitySet<etudiant> etudiant
+		{
+			get
+			{
+				return this._etudiant;
+			}
+			set
+			{
+				this._etudiant.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_etudiant(etudiant entity)
+		{
+			this.SendPropertyChanging();
+			entity.Filiere = this;
+		}
+		
+		private void detach_etudiant(etudiant entity)
+		{
+			this.SendPropertyChanging();
+			entity.Filiere = null;
 		}
 	}
 	
@@ -377,168 +539,6 @@ namespace projet1
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Filiere")]
-	public partial class Filiere : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id_filiere;
-		
-		private string _Nom_filiere;
-		
-		private string _responsable;
-		
-		private System.Nullable<System.DateTime> _date_creation;
-		
-		private EntitySet<etudiant> _etudiant;
-		
-    #region Définitions de méthodes d'extensibilité
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnId_filiereChanging(int value);
-    partial void OnId_filiereChanged();
-    partial void OnNom_filiereChanging(string value);
-    partial void OnNom_filiereChanged();
-    partial void OnresponsableChanging(string value);
-    partial void OnresponsableChanged();
-    partial void Ondate_creationChanging(System.Nullable<System.DateTime> value);
-    partial void Ondate_creationChanged();
-    #endregion
-		
-		public Filiere()
-		{
-			this._etudiant = new EntitySet<etudiant>(new Action<etudiant>(this.attach_etudiant), new Action<etudiant>(this.detach_etudiant));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id_filiere", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id_filiere
-		{
-			get
-			{
-				return this._Id_filiere;
-			}
-			set
-			{
-				if ((this._Id_filiere != value))
-				{
-					this.OnId_filiereChanging(value);
-					this.SendPropertyChanging();
-					this._Id_filiere = value;
-					this.SendPropertyChanged("Id_filiere");
-					this.OnId_filiereChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nom_filiere", DbType="VarChar(100)")]
-		public string Nom_filiere
-		{
-			get
-			{
-				return this._Nom_filiere;
-			}
-			set
-			{
-				if ((this._Nom_filiere != value))
-				{
-					this.OnNom_filiereChanging(value);
-					this.SendPropertyChanging();
-					this._Nom_filiere = value;
-					this.SendPropertyChanged("Nom_filiere");
-					this.OnNom_filiereChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_responsable", DbType="VarChar(255)")]
-		public string responsable
-		{
-			get
-			{
-				return this._responsable;
-			}
-			set
-			{
-				if ((this._responsable != value))
-				{
-					this.OnresponsableChanging(value);
-					this.SendPropertyChanging();
-					this._responsable = value;
-					this.SendPropertyChanged("responsable");
-					this.OnresponsableChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_date_creation", DbType="Date")]
-		public System.Nullable<System.DateTime> date_creation
-		{
-			get
-			{
-				return this._date_creation;
-			}
-			set
-			{
-				if ((this._date_creation != value))
-				{
-					this.Ondate_creationChanging(value);
-					this.SendPropertyChanging();
-					this._date_creation = value;
-					this.SendPropertyChanged("date_creation");
-					this.Ondate_creationChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Filiere_etudiant", Storage="_etudiant", ThisKey="Id_filiere", OtherKey="id_fil")]
-		public EntitySet<etudiant> etudiant
-		{
-			get
-			{
-				return this._etudiant;
-			}
-			set
-			{
-				this._etudiant.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_etudiant(etudiant entity)
-		{
-			this.SendPropertyChanging();
-			entity.Filiere = this;
-		}
-		
-		private void detach_etudiant(etudiant entity)
-		{
-			this.SendPropertyChanging();
-			entity.Filiere = null;
 		}
 	}
 }

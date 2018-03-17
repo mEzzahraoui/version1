@@ -32,5 +32,26 @@ namespace projet1.Properties {
                 return ((string)(this["projetConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-FFB7557;Initial Catalog=projet;Integrated Security=True")]
+        public string projetConnectionString1 {
+            get {
+                return ((string)(this["projetConnectionString1"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=PAVILION\\SQLEXPRESS;Initial Catalog=GestionDesEtudants;Integrated Sec" +
+            "urity=True")]
+        public string GestionDesEtudantsConnectionString {
+            get {
+                return ((string)(this["GestionDesEtudantsConnectionString"]));
+            }
+        }
     }
 }

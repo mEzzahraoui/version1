@@ -32,19 +32,19 @@ namespace projet1
             String nom_fil = TextNomFiliere.Text;
             String res = TextResponsableFiliere.Text;
             MsgErrorFiliere.Text = listF.AjouterFiliere(nom_fil, res);
-
+/*
             TextNomFiliere.Text = "";
             TextIDFiliere.Text = "";
-            TextResponsableFiliere.Text = "";
+            TextResponsableFiliere.Text = "";*/
         }
 
         private void ButtonModifierFil_Click(object sender, RoutedEventArgs e)
         {
-            Filiere f = (Filiere)radfil.SelectedItem;
+            OperationFiliere f = (OperationFiliere)radfil.SelectedItem;
             MsgErrorFiliere.Text = listF.ModifierFiliere(f, TextNomFiliere.Text, TextResponsableFiliere.Text);
-            TextNomFiliere.Text = "";
+         /*   TextNomFiliere.Text = "";
             TextIDFiliere.Text = "";
-            TextResponsableFiliere.Text = "";
+            TextResponsableFiliere.Text = "";*/
 
         }
 
@@ -55,11 +55,11 @@ namespace projet1
             MessageBoxResult op = MessageBox.Show("Voulez vous supprimer la filière " + nom_fil + " ?", "confirmation de suppression", MessageBoxButton.YesNo);
             if (op == MessageBoxResult.Yes)
             {
-                MessageBox.Show(listF.SupprimerFiliere((Filiere)radfil.SelectedItem));
+                MessageBox.Show(listF.SupprimerFiliere((OperationFiliere)radfil.SelectedItem));
             }
-            TextNomFiliere.Text = "";
+       /*     TextNomFiliere.Text = "";
             TextIDFiliere.Text = "";
-            TextResponsableFiliere.Text = "";
+            TextResponsableFiliere.Text = "";*/
         }
     }
 }
