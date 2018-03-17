@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="projet1.Modifier"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:projet1"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             mc:Ignorable="d" 
+             d:DesignHeight="503.868" d:DesignWidth="862.589" Background="White">
+
+    <Grid Margin="27,27,10,29" x:Name="gridMain">
+        <Grid.Resources>
+            <Style TargetType="telerik:DataFormDataField">
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="true">
+                        <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self} , Path= (Validation.Errors).CurrentItem.ErrorContent}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <DataTemplate x:Key="MyTemplate" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition Height="0*"/>
+                        <RowDefinition Height="0*"/>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition Height="0*"/>
+                        <RowDefinition Height="0*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <telerik:DataFormDataField Name="cne" Label="Cne" DataMemberBinding="{Binding Path=cne, Mode=TwoWay , ValidatesOnDataErrors=True}" Foreground="White" FontSize="16"/>
+                    <telerik:DataFormDataField Grid.Row="2" Name="nom" Label="Nom" DataMemberBinding="{Binding Path=nom, Mode=TwoWay , ValidatesOnDataErrors=True}" Foreground="White" FontSize="16"/>
+                    <telerik:DataFormDataField Grid.Row="3" Name="prenom" Label="Prenom" DataMemberBinding="{Binding Path=prenom, Mode=TwoWay , ValidatesOnDataErrors=True}" Foreground="White" FontSize="16" />
+                    <telerik:DataFormDataField Grid.Row="4" Name="adress" Label="Address" DataMemberBinding="{Binding Path=adresse, Mode=TwoWay , ValidatesOnDataErrors=True}" Foreground="White" FontSize="16"/>
+                    <telerik:DataFormDateField Grid.Row="5"  Name="date_naissance" Label="Date de naissance" DataMemberBinding="{Binding  Path=date_naiss, Mode=TwoWay}" Foreground="White" FontSize="16"/>
+                    <telerik:DataFormDataField Name="sexe" Grid.Row="6" Label="Sexe" DataMemberBinding="{Binding Path=sexe, Mode=TwoWay , ValidatesOnDataErrors=True}" Foreground="White" FontSize="16"/>
+                    <telerik:DataFormDataField Name="filiere" Grid.Row="8" Label="Filière" DataMemberBinding="{Binding Path=Filiere.Nom_filiere, Mode=TwoWay , ValidatesOnDataErrors=True}" Foreground="White" FontSize="16"/>
+                    <telerik:DataFormDataField Grid.Row="7" Name="tele" Label="Telephone" DataMemberBinding="{Binding  Path=telephone, Mode=TwoWay , ValidatesOnDataErrors=True}" Foreground="White" FontSize="16"/>
+                    <telerik:DataFormDataField />
+                    <telerik:DataFormDataField Grid.Row="1" Name="image" Label="Image" DataMemberBinding="{Binding  Path=image, Mode=TwoWay}" Foreground="White" FontSize="16">
+                        <telerik:DataFormDataField.Content x:Uid="o">
+                            <Image Stretch="Fill" Width="50" Height="50"  Name="img" Source="{Binding image }"/>
+                        </telerik:DataFormDataField.Content>
+                    </telerik:DataFormDataField>
+                </Grid>
+            </DataTemplate>
+        </Grid.Resources>
+        <telerik:RadDataForm Name="radform" BorderBrush="#FFF7F7F7" HorizontalAlignment="Left" Margin="112,36,0,0" VerticalAlignment="Top" Height="305" Width="536" AutoGenerateFields="False" 
+                ReadOnlyTemplate="{StaticResource MyTemplate}" ItemsSource="{Binding Source={x:Static local:ListerFiliers.lister},ValidatesOnExceptions=True, NotifyOnValidationError=True}"  EditTemplate="{StaticResource MyTemplate}" NewItemTemplate="{StaticResource MyTemplate}"  >
+            <telerik:RadDataForm.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF2A64FF"/>
+                    <GradientStop Color="#FFFFEFEF" Offset="1"/>
+                    <GradientStop Color="#FF3865E0"/>
+                    <GradientStop Color="#FF699AB6" Offset="0.973"/>
+                </LinearGradientBrush>
+            </telerik:RadDataForm.Background>
+        </telerik:RadDataForm>
+        <Button x:Name="uploadButton" Content="Changer Image" HorizontalAlignment="Left" Height="27" Margin="319,358,0,0" VerticalAlignment="Top" Width="145" RenderTransformOrigin="1.296,1.581" Click="uploadButton_Click"/>
+        <Button x:Name="radButton" Content="Valider modification" HorizontalAlignment="Left" Height="Auto" Margin="110,358,0,0" VerticalAlignment="Top" Width="172" RenderTransformOrigin="-0.916,0.307" Click="radButton_Click"/>
+        <Label x:Name="label" Content="Fenêtre de modification des étudiants" HorizontalAlignment="Left" Margin="246,2,0,0" VerticalAlignment="Top" Width="298" Foreground="#DD3022BD" FontSize="16"/>
+        <Label x:Name="error"  HorizontalAlignment="Left" Margin="102,275,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.185,1.613" Width="246" Background="{x:Null}" Foreground="#FFE81111" Height="34" />
+        <Button x:Name="uploadButton_Copy" Content="Retour" HorizontalAlignment="Left" Height="27" Margin="517,358,0,0" VerticalAlignment="Top" Width="145"  RenderTransformOrigin="1.296,1.581" Click="uploadButton_Copy_Click"/>
+    </Grid>
+</UserControl>
